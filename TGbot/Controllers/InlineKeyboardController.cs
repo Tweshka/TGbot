@@ -18,7 +18,9 @@ public class InlineKeyboardController
         }
     }
 
+#pragma warning disable IDE0051 // Удалите неиспользуемые закрытые члены
     private async Task Handle1(CallbackQuery? callbackQuery, CancellationToken ct)
+#pragma warning restore IDE0051 // Удалите неиспользуемые закрытые члены
     {
         if (callbackQuery?.Data == null)
             return;
@@ -40,7 +42,9 @@ public class InlineKeyboardController
             $"{Environment.NewLine}Можно поменять в главном меню.", cancellationToken: ct, parseMode: ParseMode.Html);
     }
 
+#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
     internal async Task Handle(CallbackQuery? callbackQuery, CancellationToken cancellationToken)
+#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
     {
         throw new NotImplementedException();
     }

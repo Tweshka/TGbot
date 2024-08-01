@@ -7,25 +7,36 @@ using Telegram.Bot.Polling;
 using TGbot.Controllers;
 
 namespace TGbot
-{
-  
+#pragma warning disable format
+{ 
+#pragma warning restore format
 
     internal class Bot : BackgroundService
     {
         // Клиент к Telegram Bot API
+#pragma warning disable IDE0044 // Добавить модификатор только для чтения
         private ITelegramBotClient _telegramClient;
+#pragma warning restore IDE0044 // Добавить модификатор только для чтения
 
         // Контроллеры различных видов сообщений
-        private TGbot.Controllers.InlineKeyboardController _inlineKeyboardController;
-        private TGbot.Controllers.TextMessageController _textMessageController;
-        private TGbot.Controllers.DefaultMessageController _defaultMessageController;
+#pragma warning disable IDE0044 // Добавить модификатор только для чтения
+        private InlineKeyboardController _inlineKeyboardController;
+#pragma warning restore IDE0044 // Добавить модификатор только для чтения
+#pragma warning disable IDE0044 // Добавить модификатор только для чтения
+        private TextMessageController _textMessageController;
+#pragma warning restore IDE0044 // Добавить модификатор только для чтения
+#pragma warning disable IDE0044 // Добавить модификатор только для чтения
+        private DefaultMessageController _defaultMessageController;
+#pragma warning restore IDE0044 // Добавить модификатор только для чтения
 
+#pragma warning disable IDE0290 // Использовать основной конструктор
         public Bot(
+#pragma warning restore IDE0290 // Использовать основной конструктор
                 ITelegramBotClient telegramClient,
-               TGbot.Controllers.InlineKeyboardController inlineKeyboardController,
-               TGbot.Controllers.TextMessageController textMessageController,
+              InlineKeyboardController inlineKeyboardController,
+             TextMessageController textMessageController,
 
-                TGbot.Controllers.DefaultMessageController defaultMessageController)
+               DefaultMessageController defaultMessageController)
         {
             _telegramClient = telegramClient;
             _inlineKeyboardController = inlineKeyboardController;
@@ -34,7 +45,11 @@ namespace TGbot
             _defaultMessageController = defaultMessageController;
         }
 
-        protected override void Execute(CancellationToken stoppingToken)
+#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
+#pragma warning disable format
+        
 
         {
             _telegramClient.StartReceiving(
@@ -45,6 +60,7 @@ namespace TGbot
 
             Console.WriteLine("Бот запущен.");
         }
+#pragma warning restore format
 
         async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
@@ -87,9 +103,8 @@ namespace TGbot
             return Task.CompletedTask;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            throw new NotImplementedException();
-        }
+#pragma warning disable format
+        
     }
+#pragma warning restore format
 }

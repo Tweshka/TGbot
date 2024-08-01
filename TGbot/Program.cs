@@ -35,7 +35,9 @@ namespace TGbot
         {
             // Регистрируем объект TelegramBotClient c токеном подключения
             services.AddTransient<TextFunction>();
+#pragma warning disable format
             services.AddSingleton<IStorage, MemoryStorage>();  
+#pragma warning restore format
             services.AddTransient<TextMessageController>();
             services.AddTransient<DefaultMessageController>();
             services.AddTransient<InlineKeyboardController>();

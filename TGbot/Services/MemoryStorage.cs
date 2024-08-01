@@ -21,8 +21,10 @@ namespace TGbot.Services
 
         {
             // Возвращаем сессию по ключу, если она существует
+#pragma warning disable CA1854 // Предпочитать метод "IDictionary.TryGetValue(TKey, out TValue)"
             if (_sessions.ContainsKey(chatId))
                 return _sessions[chatId];
+#pragma warning restore CA1854 // Предпочитать метод "IDictionary.TryGetValue(TKey, out TValue)"
 
             // Создаем и возвращаем новую, если такой не было
             var newSession = new Models.Session() { LanguageCode = "ru" };
