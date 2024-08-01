@@ -1,42 +1,41 @@
 ﻿using Microsoft.Extensions.Hosting;
-
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
-
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Polling;
-using TextMessageController;
+using TGbot.Controllers;
 
-
-namespace VoiceTexterBot
+namespace TGbot
 {
+  
+
     internal class Bot : BackgroundService
     {
         // Клиент к Telegram Bot API
         private ITelegramBotClient _telegramClient;
 
         // Контроллеры различных видов сообщений
-        private InlineKeyboardController _inlineKeyboardController;
-        private TextMessageController _textMessageController;
-      
-        private DefaultMessageController _defaultMessageController;
+        private TGbot.Controllers.InlineKeyboardController _inlineKeyboardController;
+        private TGbot.Controllers.TextMessageController _textMessageController;
+        private TGbot.Controllers.DefaultMessageController _defaultMessageController;
 
         public Bot(
-            ITelegramBotClient telegramClient,
-            InlineKeyboardController inlineKeyboardController,
-            TextMessageController textMessageController,
-           
-            DefaultMessageController defaultMessageController)
+                ITelegramBotClient telegramClient,
+               TGbot.Controllers.InlineKeyboardController inlineKeyboardController,
+               TGbot.Controllers.TextMessageController textMessageController,
+
+                TGbot.Controllers.DefaultMessageController defaultMessageController)
         {
             _telegramClient = telegramClient;
             _inlineKeyboardController = inlineKeyboardController;
             _textMessageController = textMessageController;
-           
+
             _defaultMessageController = defaultMessageController;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override void Execute(CancellationToken stoppingToken)
+
         {
             _telegramClient.StartReceiving(
                 HandleUpdateAsync,
@@ -61,7 +60,7 @@ namespace VoiceTexterBot
             {
                 switch (update.Message!.Type)
                 {
-                   
+
                     case MessageType.Text:
                         await _textMessageController.Handle(update.Message, cancellationToken);
                         return;
@@ -86,6 +85,11 @@ namespace VoiceTexterBot
             Thread.Sleep(10000);
 
             return Task.CompletedTask;
+        }
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

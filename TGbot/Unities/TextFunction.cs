@@ -3,9 +3,9 @@ using System.Linq;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
-using VoiceTexterBot;
 
-namespace TelegramBot
+
+namespace TGbot.Unities
 {
     class TextFunction
     {

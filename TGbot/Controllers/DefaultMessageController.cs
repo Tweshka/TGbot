@@ -1,9 +1,9 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace TextMessageController
-{
-    public class DefaultMessageController
+namespace TGbot.Controllers;
+
+public class DefaultMessageController
     {
         private readonly ITelegramBotClient _telegramClient;
 
@@ -17,4 +17,3 @@ namespace TextMessageController
             await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Получено текстовое сообщение", cancellationToken: ct);
         }
     }
-}

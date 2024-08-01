@@ -1,28 +1,31 @@
 ﻿using System.Collections.Concurrent;
-using VoiceTexterBot.Models;
+using TGbot.Models;
 
-namespace VoiceTexterBot.Services
+
+namespace TGbot.Services
 {
     public class MemoryStorage : IStorage
     {
         /// <summary>
         /// Хранилище сессий
         /// </summary>
-        private readonly ConcurrentDictionary<long, Session> _sessions;
+        private readonly ConcurrentDictionary<long, Models.Session> _sessions;
 
         public MemoryStorage()
         {
-            _sessions = new ConcurrentDictionary<long, Session>();
+            _sessions = new ConcurrentDictionary<long, Models.Session>();
         }
 
-        public Session GetSession(long chatId)
+
+        public Models.Session GetSession(long chatId)
+
         {
             // Возвращаем сессию по ключу, если она существует
             if (_sessions.ContainsKey(chatId))
                 return _sessions[chatId];
 
             // Создаем и возвращаем новую, если такой не было
-            var newSession = new Session() { LanguageCode = "ru" };
+            var newSession = new Models.Session() { LanguageCode = "ru" };
             _sessions.TryAdd(chatId, newSession);
             return newSession;
         }
