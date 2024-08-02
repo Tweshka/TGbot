@@ -9,16 +9,13 @@ public class TextMessageController
 {
     private readonly ITelegramBotClient _telegramClient;
 
-#pragma warning disable IDE0079 // Удалить ненужное подавление
-#pragma warning disable IDE0290 // Использовать основной конструктор
+
     public TextMessageController(ITelegramBotClient telegramBotClient)
-#pragma warning restore IDE0079 // Удалить ненужное подавление
-#pragma warning disable IDE0079 // Удалить ненужное подавление
-#pragma warning restore IDE0290 // Использовать основной конструктор
+
     {
         _telegramClient = telegramBotClient;
     }
-#pragma warning restore IDE0079 // Удалить ненужное подавление
+
 
     public async Task Handle(Message message, CancellationToken ct)
     {
@@ -27,16 +24,15 @@ public class TextMessageController
             case "/start":
 
                 // Объект, представляющий кноки
-#pragma warning disable IDE0028 // Упростите инициализацию коллекции
+
                 var buttons = new List<InlineKeyboardButton[]>();
-#pragma warning restore IDE0028 // Упростите инициализацию коллекции
-#pragma warning disable IDE0300 // Упростите инициализацию коллекции
+
                 buttons.Add(new[]
                 {
                     InlineKeyboardButton.WithCallbackData($"Подсчет" , $"Счет"),
                     InlineKeyboardButton.WithCallbackData($"вычисление" , $"Вычисление"),
                 });
-#pragma warning restore IDE0300 // Упростите инициализацию коллекции
+
 
                 // передаем кнопки вместе с сообщением (параметр ReplyMarkup)
                 await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"<b>  Наш бот умеет считать=)опробуйте.</b> {Environment.NewLine}" +

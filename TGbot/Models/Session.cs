@@ -2,5 +2,7 @@
 
 public class Session
 {
-    public required string LanguageCode { get; set; }
+    internal string numberse;
+
+    public required string numbers { get; set; }
 }
