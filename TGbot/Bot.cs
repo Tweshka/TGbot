@@ -5,31 +5,16 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Polling;
 using TGbot.Controllers;
-
 namespace TGbot
-#pragma warning disable format
 { 
-#pragma warning restore format
-
     internal class Bot : BackgroundService
     {
         // Клиент к Telegram Bot API
-
         private ITelegramBotClient _telegramClient;
-
-
         // Контроллеры различных видов сообщений
-
         private InlineKeyboardController _inlineKeyboardController;
-
-
         private TextMessageController _textMessageController;
-
-
         private DefaultMessageController _defaultMessageController;
-
-
-
         public Bot(
 
                 ITelegramBotClient telegramClient,
@@ -44,13 +29,7 @@ namespace TGbot
 
             _defaultMessageController = defaultMessageController;
         }
-
-
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-
-#pragma warning disable format
-        
-
         {
             _telegramClient.StartReceiving(
                 HandleUpdateAsync,
@@ -60,17 +39,13 @@ namespace TGbot
 
             Console.WriteLine("Бот запущен.");
         }
-#pragma warning restore format
-
         async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             //  Обрабатываем нажатия на кнопки  из Telegram Bot API: https://core.telegram.org/bots/api#callbackquery
             if (update.Type == UpdateType.CallbackQuery)
             {
-                await _inlineKeyboardController.Handle(update.CallbackQuery, cancellationToken);
-                return;
+               
             }
-
             // Обрабатываем входящие сообщения из Telegram Bot API: https://core.telegram.org/bots/api#message
             if (update.Type == UpdateType.Message)
             {
@@ -86,7 +61,6 @@ namespace TGbot
                 }
             }
         }
-
         Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var errorMessage = exception switch
@@ -102,9 +76,5 @@ namespace TGbot
 
             return Task.CompletedTask;
         }
-
-#pragma warning disable format
-        
     }
-
 }

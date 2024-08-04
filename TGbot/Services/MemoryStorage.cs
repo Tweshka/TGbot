@@ -1,6 +1,4 @@
 ﻿using System.Collections.Concurrent;
-
-
 namespace TGbot.Services
 {
     public class MemoryStorage : IStorage
@@ -14,8 +12,6 @@ namespace TGbot.Services
         {
             _sessions = new ConcurrentDictionary<long, Models.Session>();
         }
-
-
         public Models.Session GetSession(long chatId)
 
         {
@@ -23,8 +19,6 @@ namespace TGbot.Services
 
             if (_sessions.ContainsKey(chatId))
                 return _sessions[chatId];
-
-
             // Создаем и возвращаем новую, если такой не было
             var newSession = new Models.Session() { numbers = "Вычисления" };
             _sessions.TryAdd(chatId, newSession);

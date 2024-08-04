@@ -2,25 +2,20 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using TGbot.Services;
-
 namespace TGbot.Controllers;
-
 public class InlineKeyboardController
 {
-    readonly Services.IStorage _memoryStorage;
+    readonly IStorage _memoryStorage;
     private readonly ITelegramBotClient _telegramClient;
 
-    public InlineKeyboardController(ITelegramBotClient telegramBotClient, Services.IStorage memoryStorage)
+    public InlineKeyboardController(ITelegramBotClient telegramBotClient, IStorage memoryStorage)
     {
         {
             _telegramClient = telegramBotClient;
             _memoryStorage = memoryStorage;
         }
     }
-
-
-    private async Task Handle1(CallbackQuery? callbackQuery, CancellationToken ct)
-
+    public async Task Handle1(CallbackQuery? callbackQuery, CancellationToken ct)
     {
         if (callbackQuery?.Data == null)
             return;
@@ -31,8 +26,8 @@ public class InlineKeyboardController
         // Генерим информационное сообщение
         string numbers = callbackQuery.Data switch
         {
-            "Подсчет" => " подсчёт количества символов в тексте",
-            "вычисление" => " вычисление суммы чисел",
+           "Подсчет" => "Счет",
+            "вычисление" => "вычисление",
             _ => String.Empty
         };
 
@@ -42,9 +37,7 @@ public class InlineKeyboardController
             $"{Environment.NewLine}Можно поменять в главном меню.", cancellationToken: ct, parseMode: ParseMode.Html);
     }
 
-
     internal async Task Handle(CallbackQuery? callbackQuery, CancellationToken cancellationToken)
-
     {
         throw new NotImplementedException();
     }

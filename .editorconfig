@@ -1,7 +1,7 @@
 ﻿[*.cs]
 
 # IDE0055: Исправить форматирование
-dotnet_diagnostic.IDE0055.severity = error
+dotnet_diagnostic.IDE0055.severity = none
 
 # IDE0040: Добавить модификаторы доступа
 dotnet_diagnostic.IDE0040.severity = none

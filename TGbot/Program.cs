@@ -1,15 +1,11 @@
-﻿using System;
+﻿
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Telegram.Bot;
 using TGbot.Controllers;
 using TGbot.Services;
 using TGbot.Unities;
-
-
-
 
 namespace TGbot
 {
@@ -35,9 +31,7 @@ namespace TGbot
         {
             // Регистрируем объект TelegramBotClient c токеном подключения
             services.AddTransient<TextFunction>();
-#pragma warning disable format
             services.AddSingleton<IStorage, MemoryStorage>();  
-#pragma warning restore format
             services.AddTransient<TextMessageController>();
             services.AddTransient<DefaultMessageController>();
             services.AddTransient<InlineKeyboardController>();
