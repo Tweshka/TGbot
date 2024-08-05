@@ -1,10 +1,10 @@
 ﻿
 namespace TGbot.Unities
 {
-    class TextFunction
+   public class TextFunction
     {
-        public class StringAndNumberUtils
-        {
+        
+        
             // Метод для определения длины строки
             public int GetStringLength(string text)
             {
@@ -19,7 +19,7 @@ namespace TGbot.Unities
             }
 
             // Метод для вычисления суммы чисел
-            public int SumNumbers(string numbersString)
+            public int GetSumNumbers(string numbersString)
             {
                 string[] numbers = numbersString.Split(' ');
 
@@ -35,4 +35,3 @@ namespace TGbot.Unities
             }
         }
     }
-}

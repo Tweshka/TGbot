@@ -44,7 +44,8 @@ namespace TGbot
             //  Обрабатываем нажатия на кнопки  из Telegram Bot API: https://core.telegram.org/bots/api#callbackquery
             if (update.Type == UpdateType.CallbackQuery)
             {
-               
+                await _inlineKeyboardController.Handle(update.CallbackQuery, cancellationToken);
+                return;
             }
             // Обрабатываем входящие сообщения из Telegram Bot API: https://core.telegram.org/bots/api#message
             if (update.Type == UpdateType.Message)
