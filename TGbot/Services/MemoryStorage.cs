@@ -20,7 +20,7 @@ namespace TGbot.Services
             if (_sessions.ContainsKey(chatId))
                 return _sessions[chatId];
             // Создаем и возвращаем новую, если такой не было
-            var newSession = new Models.Session() { numbers = "Вычисления" };
+            var newSession = new Models.Session() { TextTask = "Вычисления" };
             _sessions.TryAdd(chatId, newSession);
             return newSession;
         }

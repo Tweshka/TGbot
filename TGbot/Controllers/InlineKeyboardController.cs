@@ -15,18 +15,18 @@ public class InlineKeyboardController
             _memoryStorage = memoryStorage;
         }
     }
-    public async Task Handle1(CallbackQuery? callbackQuery, CancellationToken ct)
+    public async Task Handle(CallbackQuery? callbackQuery, CancellationToken ct)
     {
         if (callbackQuery?.Data == null)
             return;
 
         // Обновление пользовательской сессии новыми данными
-        _memoryStorage.GetSession(callbackQuery.From.Id).numberse = callbackQuery.Data;
+        _memoryStorage.GetSession(callbackQuery.From.Id).TextTask = callbackQuery.Data;
 
         // Генерим информационное сообщение
         string numbers = callbackQuery.Data switch
         {
-           "Подсчет" => "Счет",
+            "Подсчет" => "Счет",
             "вычисление" => "вычисление",
             _ => String.Empty
         };
@@ -37,8 +37,4 @@ public class InlineKeyboardController
             $"{Environment.NewLine}Можно поменять в главном меню.", cancellationToken: ct, parseMode: ParseMode.Html);
     }
 
-    internal async Task Handle(CallbackQuery? callbackQuery, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
 }
